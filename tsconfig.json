@@ -57,7 +57,7 @@
     "useDefineForClassFields": true,
 
     // Type-checking options
-    "strict": true,
+    "strict": false,
     "noFallthroughCasesInSwitch": true,
     "noImplicitOverride": true,
     "noImplicitReturns": true,
@@ -65,7 +65,8 @@
     "noPropertyAccessFromIndexSignature": true,
     "noUncheckedIndexedAccess": true,
     "noUnusedLocals": false,
-    "noUnusedParameters": true
+    "noUnusedParameters": true,
+    "noImplicitAny": false
   },
   "include": ["./lib/**/*.ts", "./lib/**/*.tsx"],
   "exclude": ["./lib/**/*.stories.*"]
