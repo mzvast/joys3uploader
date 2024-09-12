@@ -1,14 +1,9 @@
-import { S3Client } from '@aws-sdk/client-s3';
+import { S3Client, type S3ClientConfig } from '@aws-sdk/client-s3';
 import { Upload } from '@aws-sdk/lib-storage';
 
-export interface S3UploaderConfig {
-  region: string;
-  accessKeyId: string;
-  secretAccessKey: string;
+export type IConfig = {
   bucketName: string;
-
-  maxAttempts?: number; // 重试次数
-}
+} & S3ClientConfig;
 
 interface UploadParams {
   file: File;
@@ -21,20 +16,12 @@ interface UploadParams {
 
 export class S3Uploader {
   private s3Client: S3Client;
+  private config: IConfig;
   private bucketName: string;
 
-  private config: S3UploaderConfig;
-
-  constructor(config: S3UploaderConfig) {
+  constructor(config: IConfig) {
     this.config = config;
-    this.s3Client = new S3Client({
-      region: config.region,
-      credentials: {
-        accessKeyId: config.accessKeyId,
-        secretAccessKey: config.secretAccessKey,
-      },
-      maxAttempts: config.maxAttempts ?? 1,
-    });
+    this.s3Client = new S3Client(config);
     this.bucketName = config.bucketName;
   }
 

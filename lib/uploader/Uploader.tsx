@@ -5,9 +5,9 @@
  * @create date 2024-09-10 15:59:07
  */
 import React, { useRef, useState } from 'react';
-import { S3Uploader, type S3UploaderConfig } from './S3Uploader';
+import { S3Uploader, type IConfig } from './S3Uploader';
 export type Props = {
-  config: S3UploaderConfig;
+  config: IConfig;
   onSuccess?: (url: string) => void;
   onError?: (error: Error) => void;
 };
@@ -36,7 +36,6 @@ const Uploader: React.FC<Props> = ({ config, onSuccess, onError }) => {
       await uploader.uploadFile({
         file,
         key: file.name,
-        contentType: file.type,
         onProgress: (percentage) => {
           setProgress(percentage);
         },
