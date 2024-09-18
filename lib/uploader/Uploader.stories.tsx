@@ -1,8 +1,6 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from 'react';
 import { Meta } from '@storybook/react';
-import Uploader from './Uploader';
-import { IConfig } from './S3Uploader';
+import Uploader, { ConfigType } from './Uploader';
 
 // 定义 metadata
 export default {
@@ -11,7 +9,7 @@ export default {
 } satisfies Meta<typeof Uploader>;
 
 // 模拟 S3UploaderConfig 配置
-const mockS3UploaderConfig: IConfig = {
+const mockS3UploaderConfig: ConfigType = {
   bucketName: 'example-bucket',
   region: 'us-west-2',
   credentials: {
@@ -19,18 +17,13 @@ const mockS3UploaderConfig: IConfig = {
     secretAccessKey: 'mock-secret-access-key',
     sessionToken: '',
   },
-  endpoint: 's3-internal.cn-north-1.jdcloud-oss.com',
+  endpoint: 'https://s3-internal.cn-north-1.xx-oss.com',
+  key: 'abc.mp4',
 };
 
 // Default Story
 export const Primary = {
   args: {
     config: mockS3UploaderConfig,
-    onSuccess: (url: string) => {
-      alert(`文件上传成功，URL: ${url}`);
-    },
-    onError: (error: Error) => {
-      alert(`文件上传失败: ${error.message}`);
-    },
   },
 };

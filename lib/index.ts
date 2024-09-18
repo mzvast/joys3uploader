@@ -1,3 +1,4 @@
-import './global.css';
+// import './global.css';
 
-export * from './Button';
+// export * from './Button';
+export * from './uploader';

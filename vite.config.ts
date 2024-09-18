@@ -12,7 +12,7 @@ export default defineConfig({
     dts({ rollupTypes: true }), // Output .d.ts files
   ],
   build: {
-    target: 'esnext',
+    target: 'es2015',
     minify: false,
     lib: {
       entry: resolve(__dirname, join('lib', 'index.ts')),
